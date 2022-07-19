@@ -14,7 +14,7 @@ import retrofit2.http.Query
 interface RetrofitService {
 
     @GET("search?")
-     fun getAllMovies(@Query("q") q: String) : Call<Item>
+     fun getItems(@Query("q") q: String) : Call<Item>
 
     companion object {
 

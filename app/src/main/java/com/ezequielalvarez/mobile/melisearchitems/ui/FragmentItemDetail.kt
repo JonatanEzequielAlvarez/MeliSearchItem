@@ -14,10 +14,9 @@ import com.ezequielalvarez.mobile.melisearchitems.R
 import com.ezequielalvarez.mobile.melisearchitems.databinding.FragmentItemDetailBinding
 
 
-class FragmentItemDetail: Fragment() {
+class FragmentItemDetail : Fragment() {
     private var _binding: FragmentItemDetailBinding? = null
     private val binding get() = _binding!!
-
 
     companion object {
         private var urlDetail = ""
@@ -34,24 +33,21 @@ class FragmentItemDetail: Fragment() {
     ): View? {
         _binding = FragmentItemDetailBinding.inflate(inflater, container, false)
         val view = binding.root
-        val progressDialog = ProgressDialog(activity)
-        progressDialog.setIcon(R.mipmap.ic_launcher)
-        progressDialog.setMessage("Cargando Información...")
-        progressDialog.show()
 
+        val refresh = binding.pullRefresh
+        refresh.setColorSchemeResources(R.color.yellow)
+        refresh.isRefreshing = true
         val web = binding.webDetail
         val webSettings = web.settings
         webSettings.javaScriptEnabled
         web!!.webViewClient = WebViewClient()
         web!!.webChromeClient = WebChromeClient()
-
         web.loadUrl(urlDetail)
 
         web!!.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)
-                //elimina ProgressBar.
-                progressDialog.dismiss()
+                refresh.isRefreshing = false
             }
         }
 

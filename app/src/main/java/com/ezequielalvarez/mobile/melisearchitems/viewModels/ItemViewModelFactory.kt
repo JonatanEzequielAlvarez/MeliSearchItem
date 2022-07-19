@@ -10,7 +10,7 @@ class ItemViewModelFactory constructor(private val repository: Repository): View
         return if (modelClass.isAssignableFrom(ItemViewModel::class.java)) {
             ItemViewModel(this.repository) as T
         } else {
-            throw IllegalArgumentException("ViewModel Not Found")
+            throw IllegalArgumentException("ViewModel No Funciona")
         }
     }
 }

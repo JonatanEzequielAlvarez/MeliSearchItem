@@ -1,23 +1,23 @@
 package com.ezequielalvarez.mobile.melisearchitems.ui
 
 import android.app.ProgressDialog
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.AdapterView
-import android.widget.Toast
+
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ezequielalvarez.mobile.melisearchitems.R
 import com.ezequielalvarez.mobile.melisearchitems.adapters.ItemsAdapter
+import com.ezequielalvarez.mobile.melisearchitems.adapters.OnItemClickListener
 import com.ezequielalvarez.mobile.melisearchitems.api.RetrofitService
+import com.ezequielalvarez.mobile.melisearchitems.config.StatusInternet
 import com.ezequielalvarez.mobile.melisearchitems.databinding.FragmentItemBinding
 import com.ezequielalvarez.mobile.melisearchitems.databinding.FragmentItemDetailBinding
 import com.ezequielalvarez.mobile.melisearchitems.flow.FlowFragment
@@ -27,12 +27,11 @@ import com.ezequielalvarez.mobile.melisearchitems.viewModels.ItemViewModel
 import com.ezequielalvarez.mobile.melisearchitems.viewModels.ItemViewModelFactory
 import kotlin.concurrent.fixedRateTimer
 
-class FragmentItem : Fragment(), ItemsAdapter.OnItemClickListener {
+class FragmentItem : Fragment(), OnItemClickListener {
     private val TAG = "FragmentItem"
     private var _binding: FragmentItemBinding? = null
     private val binding get() = _binding!!
     lateinit var viewModel: ItemViewModel
-
     private val retrofitService = RetrofitService.getInstance()
     val adapter = ItemsAdapter(this)
 
@@ -42,6 +41,7 @@ class FragmentItem : Fragment(), ItemsAdapter.OnItemClickListener {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,53 +49,15 @@ class FragmentItem : Fragment(), ItemsAdapter.OnItemClickListener {
     ): View? {
         _binding = FragmentItemBinding.inflate(inflater, container, false)
         val view = binding.root
-        val refresh = binding.pullRefresh
-
-        viewModel = ViewModelProvider(this, ItemViewModelFactory(Repository(retrofitService))).get(
-            ItemViewModel::class.java
-        )
-
-        binding.recyclerview.adapter = adapter
-
-
-        viewModel.movieList.observe(viewLifecycleOwner, Observer {
-            Log.d(TAG, "onCreate: ${it.results.toString()}")
-            adapter.setMovieList(it.results)
-
-           refresh.isRefreshing = false
-        })
-
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-            Log.d(TAG, "onError: ${it}")
-        })
-        //aca esto debo meterlo en el searchView
-        //viewModel.getAllMovies("Samsung s20")
-
-
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                refresh.isRefreshing = true
-                viewModel.getAllMovies(query)
-                Log.d(TAG, query)
-                return false
-            }
-
-            override fun onQueryTextChange(s: String): Boolean {
-
-                return false
-            }
-        })
-
-
+        validateInternet()
+        searchItem()
+        setData()
         return view
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
-
 
     override fun onItemClick(position: Int, result: Result) {
         FlowFragment.fragmentWithStack(
@@ -104,5 +66,58 @@ class FragmentItem : Fragment(), ItemsAdapter.OnItemClickListener {
         )
 
     }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun validateInternet() {
+        if (!(StatusInternet.isNetworkAvailable(requireContext()))) {
+            binding.lnViewError.visibility = View.VISIBLE
+            binding.imageError.setImageResource(R.drawable.ic_intenet)
+            binding.tvError.setText(R.string.item_error_interner)
+        }
+    }
+
+    fun setData() {
+        binding.pullRefresh.setColorSchemeResources(R.color.yellow)
+        viewModel = ViewModelProvider(this, ItemViewModelFactory(Repository(retrofitService))).get(
+            ItemViewModel::class.java
+        )
+        binding.recyclerview.adapter = adapter
+
+        viewModel.itemList.observe(viewLifecycleOwner, Observer {
+            Log.d(TAG, "onCreate: ${it.results}")
+            if (it.results.isNotEmpty()) {
+                adapter.setItemsList(it.results)
+                binding.lnViewError.visibility = View.GONE
+            } else {
+                adapter.setItemsList(emptyList())
+                binding.lnViewError.visibility = View.VISIBLE
+            }
+            binding.pullRefresh.isRefreshing = false
+        })
+
+        viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
+            binding.lnViewError.visibility = View.VISIBLE
+            binding.pullRefresh.isRefreshing = false
+            binding.tvError.setText(R.string.item_error_search)
+            Log.d(TAG, "onError: ${it}")
+
+        })
+    }
+
+    fun searchItem() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                binding.pullRefresh.isRefreshing = true
+                viewModel.getItems(query)
+                Log.d(TAG, query)
+                return false
+            }
+
+            override fun onQueryTextChange(s: String): Boolean {
+                return false
+            }
+        })
+    }
+
 
 }
