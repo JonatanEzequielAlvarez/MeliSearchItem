@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="2dp"
+    android:id="@+id/cardItem"
+    android:elevation="8dp">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageview"
+            android:layout_width="120dp"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="150dp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20sp"
+        >
+
+        <com.creardev.mobile.creardevlibrary.assets.views.TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hola mundo"
+            android:textSize="16sp"
+            android:textColor="@color/dark"
+            app:fontType="ROBOTO_LIGHT"/>
+
+
+
+        <com.creardev.mobile.creardevlibrary.assets.views.TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fontType="ROBOTO_REGULAR"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5sp"
+            android:text="$35000"
+             />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>
