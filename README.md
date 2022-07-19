@@ -8,3 +8,5 @@ RETROFIT
 GLIDE 
 (Glide es una popular librería Android de código abierto para cargar imágenes, videos y GIFs animados. Con Glide puedes cargar y mostrar medios de muchas fuentes diferentes, tales como servidores remotos o el sistema local de archivos)
 
+ //ViewModel and livedata
+
