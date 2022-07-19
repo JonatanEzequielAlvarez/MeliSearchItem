@@ -1,7 +1,6 @@
 package com.ezequielalvarez.mobile.melisearchitems.ui
 
 
-
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -21,62 +20,17 @@ import com.ezequielalvarez.mobile.melisearchitems.viewModels.ItemViewModel
 import com.ezequielalvarez.mobile.melisearchitems.viewModels.ItemViewModelFactory
 
 
-class MainActivity : AppCompatActivity(){
-//    private val TAG = "MainActivity"
-//    private lateinit var binding: ActivityMainBinding
-//
-//    lateinit var viewModel: ItemViewModel
-//
-//    private val retrofitService = RetrofitService.getInstance()
-//    val adapter = ItemsAdapter(this)
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-                //binding = ActivityMainBinding.inflate(layoutInflater)
-        //setContentView(binding.root)
 
         FlowFragment.fragmentNoStack(
             supportFragmentManager!!,
             FragmentItem.newInstance()
         )
 
-//        viewModel = ViewModelProvider(this, ItemViewModelFactory(Repository(retrofitService))).get(
-//            ItemViewModel::class.java)
-//
-//        binding.recyclerview.adapter = adapter
-//
-//
-//        viewModel.movieList.observe(this, Observer {
-//            Log.d(TAG, "onCreate: ${it.results.toString()}")
-//            adapter.setMovieList(it.results)
-//
-//
-//        })
-//
-//        viewModel.errorMessage.observe(this, Observer {
-//            Log.d(TAG, "onError: ${it}")
-//        })
-//        //aca esto debo meterlo en el searchView
-//        viewModel.getAllMovies("Samsung s20")
-
-
     }
-
-
-//
-//    override fun onItemClick(position: Int, result: Result) {
-//        FlowFragment.moveToWithAnimation(
-//            supportFragmentManager!!,
-//            FragmentItemDetail.newInstance(result.permalink)
-//        )
-//
-////        val goToUrlGovIntent = Intent(
-////            Intent.ACTION_VIEW,
-////            Uri.parse(result.permalink)
-////        )
-////        startActivity(goToUrlGovIntent)
-//    }
-
 
 }

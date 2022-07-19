@@ -2,6 +2,8 @@ package com.ezequielalvarez.mobile.melisearchitems.api
 
 
 
+import com.ezequielalvarez.mobile.melisearchitems.config.Constants.Companion.SITE_ID
+import com.ezequielalvarez.mobile.melisearchitems.config.Constants.Companion.URL_BASE
 import com.ezequielalvarez.mobile.melisearchitems.models.Item
 
 import retrofit2.Call
@@ -24,8 +26,7 @@ interface RetrofitService {
 
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()
-                    //.baseUrl("https://api.mercadolibre.com/sites/")
-                    .baseUrl("https://api.mercadolibre.com/sites/MLA/")
+                    .baseUrl(URL_BASE + SITE_ID)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 retrofitService = retrofit.create(RetrofitService::class.java)
