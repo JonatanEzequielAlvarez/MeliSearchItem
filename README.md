@@ -1,5 +1,6 @@
 # MeliSearchItem
-APLICACION QUE PERMITE BUSCAR ITEMS EN MERCADO EN ARGENTINA
+APLICACION QUE PERMITE BUSCAR ITEMS EN MERCADO EN ARGENTINA.
+UTILIZANDO EL PATRON DE DISEÑO MVVM.
 
 # Librerias utilizadas
 RETROFIT 
@@ -8,5 +9,6 @@ RETROFIT
 GLIDE 
 (Glide es una popular librería Android de código abierto para cargar imágenes, videos y GIFs animados. Con Glide puedes cargar y mostrar medios de muchas fuentes diferentes, tales como servidores remotos o el sistema local de archivos)
 
- //ViewModel and livedata
+VIEWMODEL, LIVEDATA
+(para patron de diseño MVVM)
 
