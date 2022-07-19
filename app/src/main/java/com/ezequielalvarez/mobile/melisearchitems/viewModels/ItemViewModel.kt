@@ -28,7 +28,6 @@ class ItemViewModel constructor(private val repository: Repository) : ViewModel(
             override fun onResponse(call: Call<Item>, response: Response<Item>) {
                 itemList.postValue(response.body())
             }
-
             override fun onFailure(call: Call<Item>, t: Throwable) {
                 errorMessage.postValue(t.message)
             }
