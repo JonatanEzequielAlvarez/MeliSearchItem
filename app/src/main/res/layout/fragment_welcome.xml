@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/yellow_first">
 
+
     <com.creardev.mobile.creardevlibrary.assets.views.TextView
         android:id="@+id/textView"
         android:layout_width="298dp"
@@ -20,6 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.creardev.mobile.creardevlibrary.assets.views.Button
         android:id="@+id/btnStart"
