@@ -15,7 +15,7 @@
 		android:usesCleartextTraffic="true"
 		android:theme="@style/Theme.MeliSearchItems">
 		<activity
-			android:name=".ui.MainActivity"
+			android:name=".ui.activities.MainActivity"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:exported="true">
 			<intent-filter>

@@ -23,7 +23,6 @@ interface RetrofitService {
         var retrofitService: RetrofitService? = null
 
         fun getInstance() : RetrofitService {
-
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()
                     .baseUrl(URL_BASE + SITE_ID)

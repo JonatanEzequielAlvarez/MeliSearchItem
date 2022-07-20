@@ -1,12 +1,11 @@
-package com.ezequielalvarez.mobile.melisearchitems.ui
+package com.ezequielalvarez.mobile.melisearchitems.ui.fragments
 
-import android.app.ProgressDialog
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
-import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
@@ -26,6 +25,7 @@ class FragmentItemDetail : Fragment() {
         }
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,13 +33,30 @@ class FragmentItemDetail : Fragment() {
     ): View? {
         _binding = FragmentItemDetailBinding.inflate(inflater, container, false)
         val view = binding.root
+        loadWeb()
+        onRefresh()
+        return view
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    fun onRefresh() {
+        binding.pullRefresh.setOnRefreshListener {
+            loadWeb()
+            binding.pullRefresh.isRefreshing = false
+        }
+    }
+
+    fun loadWeb() {
         val refresh = binding.pullRefresh
         refresh.setColorSchemeResources(R.color.yellow)
         refresh.isRefreshing = true
         val web = binding.webDetail
         val webSettings = web.settings
-        webSettings.javaScriptEnabled
+        webSettings.javaScriptEnabled = true
         web!!.webViewClient = WebViewClient()
         web!!.webChromeClient = WebChromeClient()
         web.loadUrl(urlDetail)
@@ -50,12 +67,7 @@ class FragmentItemDetail : Fragment() {
                 refresh.isRefreshing = false
             }
         }
-
-        return view
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }

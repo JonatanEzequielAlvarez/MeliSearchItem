@@ -3,8 +3,12 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 
 }
+
+
 
 android {
     compileSdk 31
@@ -45,6 +49,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-analytics:20.1.2'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -58,5 +63,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     //mi libreria para las fuentes
     implementation 'com.gitlab.jonataneze2323:CrearDevLibrary:1.0.0'
+    //libreria crashlytics
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.11'
 
 }

@@ -12,3 +12,6 @@ GLIDE
 VIEWMODEL, LIVEDATA
 (para patron de diseño MVVM)
 
+CRASHLYTICS
+(para detectar fallos o errores inesperados en la app)
+

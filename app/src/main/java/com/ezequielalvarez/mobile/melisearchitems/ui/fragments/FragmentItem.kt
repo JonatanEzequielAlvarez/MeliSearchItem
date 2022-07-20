@@ -1,13 +1,11 @@
-package com.ezequielalvarez.mobile.melisearchitems.ui
+package com.ezequielalvarez.mobile.melisearchitems.ui.fragments
 
-import android.app.ProgressDialog
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -19,13 +17,11 @@ import com.ezequielalvarez.mobile.melisearchitems.adapters.OnItemClickListener
 import com.ezequielalvarez.mobile.melisearchitems.api.RetrofitService
 import com.ezequielalvarez.mobile.melisearchitems.config.StatusInternet
 import com.ezequielalvarez.mobile.melisearchitems.databinding.FragmentItemBinding
-import com.ezequielalvarez.mobile.melisearchitems.databinding.FragmentItemDetailBinding
 import com.ezequielalvarez.mobile.melisearchitems.flow.FlowFragment
 import com.ezequielalvarez.mobile.melisearchitems.models.Result
 import com.ezequielalvarez.mobile.melisearchitems.repository.Repository
 import com.ezequielalvarez.mobile.melisearchitems.viewModels.ItemViewModel
 import com.ezequielalvarez.mobile.melisearchitems.viewModels.ItemViewModelFactory
-import kotlin.concurrent.fixedRateTimer
 
 class FragmentItem : Fragment(), OnItemClickListener {
     private val TAG = "FragmentItem"
@@ -52,10 +48,12 @@ class FragmentItem : Fragment(), OnItemClickListener {
         validateInternet()
         searchItem()
         setData()
+        onRefresh()
         return view
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
     }
 
@@ -64,7 +62,6 @@ class FragmentItem : Fragment(), OnItemClickListener {
             requireFragmentManager(),
             FragmentItemDetail.newInstance(result.permalink)
         )
-
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -77,6 +74,7 @@ class FragmentItem : Fragment(), OnItemClickListener {
     }
 
     fun setData() {
+
         binding.pullRefresh.setColorSchemeResources(R.color.yellow)
         viewModel = ViewModelProvider(this, ItemViewModelFactory(Repository(retrofitService))).get(
             ItemViewModel::class.java
@@ -100,7 +98,6 @@ class FragmentItem : Fragment(), OnItemClickListener {
             binding.pullRefresh.isRefreshing = false
             binding.tvError.setText(R.string.item_error_search)
             Log.d(TAG, "onError: ${it}")
-
         })
     }
 
@@ -117,6 +114,13 @@ class FragmentItem : Fragment(), OnItemClickListener {
                 return false
             }
         })
+    }
+
+    fun onRefresh() {
+        binding.pullRefresh.setOnRefreshListener {
+            searchItem()
+            binding.pullRefresh.isRefreshing = false
+        }
     }
 
 
