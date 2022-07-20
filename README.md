@@ -21,3 +21,6 @@ CRASHLYTICS
 MI LIBRERIA
 (para traer fuentes externas al proyecto)
 
+VIEWBINDING
+(Es una función que te permite escribir más fácilmente código que interactúa con las vistas. Una vez que la vinculación de vista está habilitada en un módulo, genera una clase de vinculación para cada archivo de diseño XML presente en ese módulo. Una instancia de una clase de vinculación contiene referencias directas a todas las vistas que tienen un ID en el diseño correspondiente.)
+
