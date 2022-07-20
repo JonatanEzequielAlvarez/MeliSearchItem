@@ -12,7 +12,7 @@
     <string name="item_error_search">Lo siento, algo salió mal \nal intentar realizar su búsqueda</string>
     <string name="item_error_interner">Lo siento, parece que no hay internet</string>
     <string name="start">Comenzar</string>
-    <string name="welcome">Hola!! \n esta app te permite buscar \productos de mercado Libre y ver el detalle del mismo</string>
+    <string name="welcome">Hola!! \n esta app te permite buscar \productos de Mercado Libre y ver el detalle del mismo</string>
 
 
 </resources>
