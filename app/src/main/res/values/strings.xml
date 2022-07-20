@@ -7,7 +7,7 @@
     <string name="total_price">$ %s</string>
     <string name="item_title">Motorola G6</string>
     <string name="item_price">$35000</string>
-    <string name="item_search">Buscar</string>
+    <string name="item_search">Buscar en Mercado Libre</string>
     <string name="item_detail">Ver detalle</string>
     <string name="item_error_search">Lo siento, algo salió mal \nal intentar realizar su búsqueda</string>
     <string name="item_error_interner">Lo siento, parece que no hay internet</string>
