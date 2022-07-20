@@ -27,21 +27,21 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10sp">
-
+            
 
             <com.creardev.mobile.creardevlibrary.assets.views.TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
                 android:text="@string/item_title"
                 android:textColor="@color/dark"
                 android:textSize="16sp"
-                android:maxLines="2"
                 app:fontType="ROBOTO_LIGHT"
                 app:layout_constraintBottom_toTopOf="@+id/price"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="10dp"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="10dp" />
 
             <com.creardev.mobile.creardevlibrary.assets.views.TextView
                 android:id="@+id/price"
@@ -53,8 +53,8 @@
                 android:textSize="22sp"
                 app:fontType="ROBOTO_REGULAR"
                 app:layout_constraintBottom_toTopOf="@+id/btnDetail"
-                tools:layout_editor_absoluteX="6dp"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="6dp" />
 
             <com.creardev.mobile.creardevlibrary.assets.views.Button
                 android:id="@+id/btnDetail"
@@ -71,7 +71,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
