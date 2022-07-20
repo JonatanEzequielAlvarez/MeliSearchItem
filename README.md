@@ -17,3 +17,6 @@ ViewModel permite almacenar y administrar datos relacionados con la IU de manera
 CRASHLYTICS
 (para detectar fallos o errores inesperados en la app - se pueden visualizar desde la consola de Firebase)
 
+MI LIBRERIA
+(para traer fuentes externas al proyecto)
+
