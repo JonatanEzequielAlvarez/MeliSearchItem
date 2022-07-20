@@ -12,7 +12,7 @@ GLIDE
 
 VIEWMODEL, LIVEDATA
 (para patron de diseño MVVM) 
-LiveData está optimizado para ciclos de vida, lo que significa que respeta el ciclo de vida de otros componentes de las apps, como actividades, fragmentos o servicios.
+LiveData está optimizado para ciclos de vida, lo que significa que respeta el ciclo de vida de otros componentes de las apps, como actividades, fragmentos o servicios.<br>
 ViewModel permite almacenar y administrar datos relacionados con la IU de manera optimizada para los ciclos de vida. La clase ViewModel permite que se conserven los datos luego de cambios de configuración, como las rotaciones de pantallas.
 
 CRASHLYTICS
